@@ -1,0 +1,70 @@
+<template name="admin">
+  <h1>Admin panel content</h1>
+  {{#if isInRole 'admin'}}
+    {{> adminPageContent}}
+  {{else}}
+    You are simple user.
+  {{/if}}
+</template>
+
+<template name="adminPageContent">
+
+<h2>Add new dish:</h2>
+<form class="addNewDish">
+  <input type="text" name="dishName" placeholder="Dish name">
+  <input type="submit" value="Submit">
+</form>
+
+<section style="padding: 10px; margin: 10px 0; background-color: lightblue;">
+  <label>Dishes from base:</label>
+  <ul>
+    {{#each dishes}}
+      {{> dish}}
+    {{/each}}
+  </ul>
+</section>
+
+<h2>Add new product:</h2>
+<form class="addNewProduct">
+  <input type="text" name="productName" placeholder="Product name">
+  <input type="number" name="proteins" value="0" min="0" max="100" step="0.05">
+  <input type="number" name="fats" value="0" min="0" max="100" step="0.05">
+  <input type="number" name="carbohydrates" value="0" min="0" max="100" step="0.05">
+  <input type="submit" value="Submit">
+</form>
+
+<section style="padding: 10px; margin: 10px 0; background-color: lightpink;">
+<label>Products from base:</label>
+<ul>
+  {{#each products}}
+    {{> product}}
+  {{/each}}
+</ul>
+</section>
+
+</template>
+
+<template name="product">
+  <li>{{name}} | {{proteins}} | {{fats}} | {{carbohydrates}} | <button class="deleteCurrentProduct">delete</button></li>
+</template>
+
+<template name="variant">
+  <li class="variant">{{name}}</li>
+</template>
+
+<template name="dish">
+  <li>
+    <p>{{name}} | <button class="deleteCurrentDish">delete</button></p>
+    <label>Add product to dish:</label>
+    <input class="addProductToDish">
+    <ul>
+      {{#each variants}}
+        {{> variant}}
+      {{/each}}
+    </ul>
+    <p>
+      {{this.products}}
+    </p>
+  </li>
+
+</template>
