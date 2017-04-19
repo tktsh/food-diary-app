@@ -1,1 +1,46 @@
 /* CSS declarations go here */
+
+body{
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+input[type="text"], input[type="number"], input[type="search"]{
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+  margin-left: 5px;
+}
+
+input[type="number"]{
+  text-align: center;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, input[type="search"]:focus {
+  color: #000000;
+  border-bottom: 1px solid black;
+}
+
+input[type="submit"], button{
+  border: 0;
+  outline: 0;
+  background: transparent;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+input[type="submit"]:focus, button{
+  color: #000000;
+}
+
+ul{
+  list-style-type: none;
+}
+
+.control-panel-dish-item{
+  margin: 10px 0;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid gray;
+}

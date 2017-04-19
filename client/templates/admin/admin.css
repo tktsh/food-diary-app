@@ -1,1 +1,23 @@
 /* CSS declarations go here */
+
+ul{
+  margin: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+ul:empty{
+  display: none;
+}
+
+.deleteCurrentDish{
+  float: right;
+}
+
+button{
+  margin-left: 5px;
+}
+
+.dish-item-name{
+  font-size: 20px;
+}

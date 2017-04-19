@@ -1,3 +1,12 @@
+Template.adminPageContent.helpers({
+    products: function(){
+      return Products.find({}, { sort: {name: 1}});
+    },
+    dishes: function(){
+      return Dishes.find();
+    }
+});
+
 Template.admin.events({
     'submit .addNewProduct': function(event) {
 
@@ -21,7 +30,6 @@ Template.admin.events({
 
         var dish = {
           name: event.target.dishName.value,
-          //products: []
         };
 
         Meteor.call("addDish", dish);
@@ -38,36 +46,31 @@ Template.admin.events({
     },
 });
 
-Template.adminPageContent.helpers({
-    products: function(){
-      return Products.find();
-    },
-    dishes: function(){
-      return Dishes.find();
-    }
-});
-
-Template.dish.events({
-  'keyup .addProductToDish': function(event) {
-      Session.set('searchProductName', event.target.value);
-  },
-});
-
 Template.dish.helpers({
   variants: function(){
     var input = Session.get('searchProductName');
     if(input){
-      console.log(input);
       var reg = new RegExp('.*'+input+'.*');
       return Products.find({"name": reg});
     }
   }
 });
 
+Template.dish.events({
+  'keyup .addProductToDish': function(event) {
+      Session.set('searchProductName', event.target.value);
+  },
+  'change input[name=weight]': function(event) {
+      Meteor.call("updateDish", Template.parentData(0)._id, {
+        id: event.target.id,
+        weight: event.target.value
+      });
+  },
+});
+
+
 Template.variant.events({
-  'click .variant': function() {
-      Meteor.call("addProductToDish", this._id, Template.parentData(1)._id);
-      //console.log(this._id);                    // the {{#each days}} context
-      //console.log(Template.parentData(1)._id);  // the {{#with calendar}} context
+  'click .addToDish': function() {
+      Meteor.call("addProductToDish", Template.parentData(1)._id, { id: this._id, name: this.name, weight: 100});
   },
 });

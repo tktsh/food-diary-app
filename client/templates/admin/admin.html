@@ -12,7 +12,7 @@
 <h2>Add new dish:</h2>
 <form class="addNewDish">
   <input type="text" name="dishName" placeholder="Dish name">
-  <input type="submit" value="Submit">
+  <input type="submit" value="Create">
 </form>
 
 <section style="padding: 10px; margin: 10px 0; background-color: lightblue;">
@@ -35,6 +35,7 @@
 
 <section style="padding: 10px; margin: 10px 0; background-color: lightpink;">
 <label>Products from base:</label>
+<p style="padding: 10px 0 0 10px">name | proteins | fats | carbohydrates</p>
 <ul>
   {{#each products}}
     {{> product}}
@@ -45,26 +46,27 @@
 </template>
 
 <template name="product">
-  <li>{{name}} | {{proteins}} | {{fats}} | {{carbohydrates}} | <button class="deleteCurrentProduct">delete</button></li>
-</template>
-
-<template name="variant">
-  <li class="variant">{{name}}</li>
+  <li>{{name}} | {{proteins}} | {{fats}} | {{carbohydrates}} <button class="deleteCurrentProduct">✖</button></li>
 </template>
 
 <template name="dish">
-  <li>
-    <p>{{name}} | <button class="deleteCurrentDish">delete</button></p>
+  <li class="control-panel-dish-item">
+    <p><span class="dish-item-name">{{name}}</span><button class="deleteCurrentDish">✖</button></p>
     <label>Add product to dish:</label>
-    <input class="addProductToDish">
-    <ul>
-      {{#each variants}}
-        {{> variant}}
-      {{/each}}
-    </ul>
-    <p>
-      {{this.products}}
-    </p>
+    <input type="search" class="addProductToDish" data-id="{{_id}}">
+
+    <ul class="product-variants">{{#each variants}}
+      {{> variant}}
+    {{/each}}</ul>
+
+    <ul>{{#each this.products}}
+        <li data-id="{{id}}"><span>{{name}}</span><input type="number" name="weight" value="{{weight}}" min="0" max="10000" step="0.5"></li>
+    {{/each}}</ul>
+
   </li>
 
+</template>
+
+<template name="variant">
+  <li data-id="{{_id}}" class="variant"><span>{{name}}</span><button class="addToDish">Add</button></li>
 </template>

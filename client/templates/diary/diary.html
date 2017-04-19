@@ -1,4 +1,19 @@
 <template name="diary">
   <h1>Food diary page content</h1>
 
+  <section style="padding: 10px; margin: 10px 0; background-color: lightyellow;">
+    <label>Entries from diary:</label>
+    <div>
+      <button class="addDiaryEntrie">Create new entry</button>
+      <ul>
+        {{#each diaryEntries}}
+          {{> entry}}
+        {{/each}}
+      </ul>
+    </div>
+  </section>
+</template>
+
+<template name="entry">
+  <li><span>Entrie was created at {{createdAt}} by {{authorID}}.</span><button class="deleteCurrentEntrie">✖</button></li>
 </template>
