@@ -9,33 +9,21 @@ Template.adminPageContent.helpers({
 
 Template.admin.events({
     'submit .addNewProduct': function(event) {
-
         var product = {
-          name: event.target.productName.value,
-          proteins: event.target.proteins.value,
-          fats: event.target.fats.value,
-          carbohydrates: event.target.carbohydrates.value
+          name: event.target.productName.value, proteins: event.target.proteins.value,
+          fats: event.target.fats.value, carbohydrates: event.target.carbohydrates.value
         };
-
         Meteor.call("addProduct", product);
-
-        event.target.productName.value = "";
-        event.target.proteins.value = "";
-        event.target.fats.value = "";
-        event.target.carbohydrates.value = "";
-
+        event.target.productName.value = ""; event.target.proteins.value = "";
+        event.target.fats.value = "";event.target.carbohydrates.value = "";
         return false;
     },
     'submit .addNewDish': function(event) {
-
         var dish = {
           name: event.target.dishName.value,
         };
-
         Meteor.call("addDish", dish);
-
         event.target.dishName.value = "";
-
         return false;
     },
     'click .deleteCurrentProduct': function() {
@@ -62,14 +50,21 @@ Template.dish.events({
   },
   'change input[name=weight]': function(event) {
       Meteor.call("updateDish", Template.parentData(0)._id, {
-        id: event.target.id,
+        id: $(event.target).closest("li").attr("data-id"),
         weight: event.target.value
       });
+  },
+  'click .deleteProductFromDish': function() {
+    // deleteProductFromDish: function(dishID, productID){};
+      var dishID = Template.parentData(0)._id,
+          productID = $(event.target).closest("li").attr("data-id");
+          console.log(dishID+" "+productID);
+      Meteor.call("deleteProductFromDish", dishID, productID);
   },
 });
 
 
-Template.variant.events({
+Template.productVariant.events({
   'click .addToDish': function() {
       Meteor.call("addProductToDish", Template.parentData(1)._id, { id: this._id, name: this.name, weight: 100});
   },

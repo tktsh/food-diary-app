@@ -15,5 +15,25 @@
 </template>
 
 <template name="entry">
-  <li><span>Entrie was created at {{createdAt}} by {{authorID}}.</span><button class="deleteCurrentEntrie">✖</button></li>
+  <li class="diary-entry">
+    <div><span><input type="time" value="{{entryTime}}" readonly></span><button class="deleteCurrentEntrie">✖</button></div>
+    <div>
+      <label>Add dish to current entrie:</label>
+      <input type="search" class="addDishToDiarySearch" data-id="{{_id}}">
+      <ul class="dish-variants">{{#each variants}}
+        {{> dishVariant}}
+      {{/each}}</ul>
+      <ul>{{#each this.dishes}}
+          <li data-id="{{id}}">
+            <span>{{name}}</span>
+            <input type="number" name="weight" value="{{weight}}" min="0" max="10000" step="0.5">
+            <button class="deleteDishFromEntry">✖</button>
+          </li>
+      {{/each}}</ul>
+    </div>
+  </li>
+</template>
+
+<template name="dishVariant">
+  <li data-id="{{_id}}" class="variant"><span>{{name}}</span><button class="addDishToDiary">Add</button></li>
 </template>

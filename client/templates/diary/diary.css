@@ -1,1 +1,15 @@
 /* CSS declarations go here */
+
+.diary-entry{
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #333;
+}
+
+.deleteCurrentEntrie{
+  float: right;
+}
+
+.diary-entry > div{
+  padding: 5px 0;
+}

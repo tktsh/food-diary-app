@@ -56,17 +56,21 @@
     <input type="search" class="addProductToDish" data-id="{{_id}}">
 
     <ul class="product-variants">{{#each variants}}
-      {{> variant}}
+      {{> productVariant}}
     {{/each}}</ul>
 
     <ul>{{#each this.products}}
-        <li data-id="{{id}}"><span>{{name}}</span><input type="number" name="weight" value="{{weight}}" min="0" max="10000" step="0.5"></li>
+        <li data-id="{{id}}">
+          <span>{{name}}</span>
+          <input type="number" name="weight" value="{{weight}}" min="0" max="10000" step="0.5">
+          <button class="deleteProductFromDish">✖</button>
+        </li>
     {{/each}}</ul>
 
   </li>
 
 </template>
 
-<template name="variant">
+<template name="productVariant">
   <li data-id="{{_id}}" class="variant"><span>{{name}}</span><button class="addToDish">Add</button></li>
 </template>
