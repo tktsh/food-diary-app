@@ -38,7 +38,7 @@ Template.dish.helpers({
   variants: function(){
     var input = Session.get('searchProductName');
     if(input){
-      var reg = new RegExp('.*'+input+'.*');
+      var reg = new RegExp('^'+'.*'+input.toLowerCase()+'.*', "i");
       return Products.find({"name": reg});
     }
   }

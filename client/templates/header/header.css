@@ -1,1 +1,76 @@
 /* CSS declarations go here */
+
+nav ul{
+  display: flex;
+}
+
+header h1{
+  letter-spacing: 1px;
+  font-size: 24px;
+  font-family: 'Atomic Age', cursive;
+}
+
+nav ul li a{
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  border-bottom: 1px solid transparent;
+}
+
+nav ul li a:hover{
+  border-bottom: 1px solid white;
+}
+
+nav ul li a:visited{
+  color: #fff;
+}
+
+header{
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #40ba8b;
+  color: white;
+  padding: 10px 30px 10px 30px;
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Little fix for accounts-ui */
+
+#login-buttons a, .accounts-dialog a{
+  text-decoration: none;
+}
+
+.accounts-dialog {
+    border: none;
+}
+
+#login-buttons .login-button, .accounts-dialog .login-button {
+  background: #40ba8b;
+  border: 1px solid #40ba8b;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#login-buttons .login-button:hover, .accounts-dialog .login-button:hover {
+  background: #209869;
+  border: 1px solid #209869;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.login-close-text{
+  text-indent: -9999px;
+  line-height: 20px;
+  position: relative;
+}
+
+.login-close-text:after {
+  content: '✖';
+  position: absolute;
+  left: 9999px;
+  margin-left: -15px;
+}
+
+/* -------------------------- */

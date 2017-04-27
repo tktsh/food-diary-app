@@ -56,7 +56,7 @@ Meteor.methods({
         Diary.insert({
           createdAt: currentTime,
           authorID: Meteor.userId(),
-          entryTime: currentTime.getHours()+":"+currentTime.getMinutes(),
+          entryTime: ((currentTime.getHours()<10?'0':'') + currentTime.getHours())+":"+ ((currentTime.getMinutes()<10?'0':'') + currentTime.getMinutes()),
           entryDate: currentTime.getMonth()+"/"+currentTime.getDate()+"/"+currentTime.getFullYear()
         });
     },

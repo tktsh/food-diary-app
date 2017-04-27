@@ -1,13 +1,18 @@
 <template name="header">
-  <h1>Header Logo</h1>
-  <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/diary">Food diary</a></li>
-      <li><a href="/admin">Admin panel</a></li>
-      <li><a href="/login">Login</a></li>
-      <li><a href="/unknown">Unknown page</a></li>
-    </ul>
-  </nav>
-
+  <header>
+      <h1>food diary</h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/diary">Food diary</a></li>
+          {{#if isInRole 'admin'}}
+          <li><a href="/admin">Admin panel</a></li>
+          {{/if}}
+          <!--<li><a href="/login">Login</a></li>-->
+        </ul>
+      </nav>
+      <div>
+        {{> loginButtons align="right"}}
+      </div>
+  </header>
 </template>

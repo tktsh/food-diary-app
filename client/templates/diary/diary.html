@@ -1,8 +1,7 @@
 <template name="diary">
-  <h1>Food diary page content</h1>
+  <h1>Food diary</h1>
 
-  <section style="padding: 10px; margin: 10px 0; background-color: lightyellow;">
-    <label>Entries from diary:</label>
+  <section>
     <div>
       <button class="addDiaryEntrie">Create new entry</button>
       <ul>
@@ -18,15 +17,17 @@
   <li class="diary-entry">
     <div><span><input type="time" value="{{entryTime}}" readonly></span><button class="deleteCurrentEntrie">✖</button></div>
     <div>
-      <label>Add dish to current entrie:</label>
+      <label style="padding-left: 5px;">Add dish to current entrie:</label>
       <input type="search" class="addDishToDiarySearch" data-id="{{_id}}">
       <ul class="dish-variants">{{#each variants}}
         {{> dishVariant}}
       {{/each}}</ul>
-      <ul>{{#each this.dishes}}
-          <li data-id="{{id}}">
-            <span>{{name}}</span>
-            <input type="number" name="weight" value="{{weight}}" min="0" max="10000" step="0.5">
+      <ul class="dishes-list">{{#each this.dishes}}
+          <li class="dishes-list-item" data-id="{{id}}">
+            <p class="dishes-list-item-info">
+              <span>{{name}}</span>
+              <input type="number" name="weight" value="{{weight}}" min="0" max="10000" step="0.5">
+            </p>
             <button class="deleteDishFromEntry">✖</button>
           </li>
       {{/each}}</ul>
