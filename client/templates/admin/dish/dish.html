@@ -1,0 +1,21 @@
+<template name="dish">
+  <li class="control-panel-dish-item">
+    <p><span class="dish-item-name">{{name}}</span><button class="deleteCurrentDish">✖</button></p>
+    <label>Add product to dish:</label>
+    <input type="search" class="addProductToDish" data-id="{{_id}}">
+
+    <ul class="product-variants">{{#each variants}}
+      {{> productVariant}}
+    {{/each}}</ul>
+
+    <ul>{{#each this.products}}
+        <li data-id="{{id}}">
+          <span>{{name}}</span>
+          <input type="number" name="weight" value="{{weight}}" min="0" max="10000" step="0.5">
+          <button class="deleteProductFromDish">✖</button>
+        </li>
+    {{/each}}</ul>
+
+  </li>
+
+</template>

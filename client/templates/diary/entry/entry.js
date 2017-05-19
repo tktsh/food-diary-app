@@ -1,30 +1,3 @@
-Template.diary.helpers({
-    diaryEntries: function(){
-      var options = {
-        sort: { createdAt: -1 }
-      };
-      return Diary.find({}, options);
-    }
-});
-
-Template.diary.events({
-  'click .addDiaryEntrie': function(event) {
-
-      var entrie = {
-      };
-
-      Meteor.call("addDiaryEntrie", entrie);
-      return false;
-  },
-  'click .deleteCurrentEntrie': function(event) {
-      Meteor.call("deleteDiaryEntrie", this._id);
-      return false;
-  },
-  'keyup .addDishToDiarySearch': function(event) {
-      Session.set('searchDishName', event.target.value);
-  },
-});
-
 Template.entry.helpers({
   variants: function(){
     var input = Session.get('searchDishName');
@@ -36,9 +9,6 @@ Template.entry.helpers({
 });
 
 Template.entry.events({
-  'click .addDishToDiary': function() {
-      Meteor.call("addDishToDiary", Template.parentData(0)._id, { id: this._id, name: this.name, weight: 100});
-  },
   'change input[name=weight]': function(event) {
       Meteor.call("updateDiary", Template.parentData(0)._id, {
         id: $(event.target).closest("li").attr("data-id"),
@@ -60,5 +30,12 @@ Template.entry.events({
         $('.active').removeClass('active');
         $(e.target).closest('.diary-entry').addClass('active');
       }
+  },
+  'click .deleteCurrentEntry': function(event) {
+      Meteor.call("deleteDiaryEntry", this._id);
+      return false;
+  },
+  'keyup .addDishToDiarySearch': function(event) {
+      Session.set('searchDishName', event.target.value);
   },
 });

@@ -11,18 +11,29 @@ Meteor.startup(() => {
 
 Meteor.methods({
     addProduct: function(product) {
-        // var userRole = Meteor.user( Meteor.userId() ).role; If admin then public
+        // If administrator create product then it becomes public.
+
         product.createdAt = new Date();
         product.authorID = Meteor.userId();
+
+        if(Roles.userIsInRole(Meteor.userId(),['admin'])){
+          product.public = true;
+        }
+
         Products.insert(product);
     },
     deleteProduct: function(id) {
         Products.remove(id);
     },
     addDish: function(dish) {
-        // var userRole = Meteor.user( Meteor.userId() ).role; If admin then public
+        // If administrator create dish then it becomes public.
         dish.createdAt = new Date();
         dish.authorID = Meteor.userId();
+
+        if(Roles.userIsInRole(Meteor.userId(),['admin'])){
+          dish.public = true;
+        }
+
         Dishes.insert(dish);
     },
     deleteDish: function(id) {
@@ -51,7 +62,7 @@ Meteor.methods({
             $pull: { products: { id: productID } }
         });
     },
-    addDiaryEntrie: function(entrie) {
+    addDiaryEntry: function(entrie) {
         var currentTime = new Date();
         Diary.insert({
           createdAt: currentTime,
@@ -60,7 +71,7 @@ Meteor.methods({
           entryDate: currentTime.getMonth()+"/"+currentTime.getDate()+"/"+currentTime.getFullYear()
         });
     },
-    deleteDiaryEntrie: function(id) {
+    deleteDiaryEntry: function(id) {
         Diary.remove(id);
     },
     addDishToDiary: function(entry, dish) {
@@ -90,21 +101,21 @@ Meteor.methods({
 
 
 Meteor.publish("products", function() {
-    return Products.find(/*{
+    return Products.find({
       $or: [
         { public: true },
         { authorID: this.userId }
       ]
-    }*/);
+    });
 });
 
 Meteor.publish("dishes", function() {
-    return Dishes.find(/*{
+    return Dishes.find({
       $or: [
         { public: true },
         { authorID: this.userId }
       ]
-    }*/);
+    });
 });
 
 Meteor.publish("diary", function() {

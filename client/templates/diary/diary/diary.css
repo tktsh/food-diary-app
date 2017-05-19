@@ -1,0 +1,13 @@
+.addDiaryEntry{
+  font-weight: 300;
+  font-size: 16px;
+  color: #333;
+  padding-left: 4px;
+}
+
+.addDiaryEntry:before{
+  content: "+";
+  color: #40ba8b;
+  font-weight: bold;
+  margin-right: 5px;
+}

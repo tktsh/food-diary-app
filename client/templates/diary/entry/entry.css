@@ -1,35 +1,19 @@
-/* CSS declarations go here */
-
 .diary-entry{
   padding: 10px;
   margin: 5px;
   border: 1px solid #333;
 }
 
-.deleteCurrentEntrie{
+.deleteCurrentEntry{
   float: right;
 }
 
-.deleteCurrentEntrie, .deleteDishFromEntry{
+.deleteCurrentEntry, .deleteDishFromEntry{
   color: #c50000;
 }
 
 .diary-entry > div{
   padding: 5px 0;
-}
-
-.addDiaryEntrie{
-  font-weight: 300;
-  font-size: 16px;
-  color: #333;
-  padding-left: 4px;
-}
-
-.addDiaryEntrie:before{
-  content: "+";
-  color: #40ba8b;
-  font-weight: bold;
-  margin-right: 5px;
 }
 
 .dish-variants:empty{

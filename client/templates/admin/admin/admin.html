@@ -1,0 +1,8 @@
+<template name="admin">
+  <h1>Admin panel content</h1>
+  {{#if isInRole 'admin'}}
+    {{> adminPageContent}}
+  {{else}}
+    You are simple user.
+  {{/if}}
+</template>

@@ -1,0 +1,14 @@
+<template name="diary">
+  <h1>Food diary</h1>
+
+  <section>
+    <div>
+      <button class="addDiaryEntry">Create new entry</button>
+      <ul>
+        {{#each diaryEntries}}
+          {{> entry}}
+        {{/each}}
+      </ul>
+    </div>
+  </section>
+</template>
